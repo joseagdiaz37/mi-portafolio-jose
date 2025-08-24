@@ -12,6 +12,7 @@ const MotionLink = forwardRef(({ href, children, ...props }, ref) => {
     </motion.a>
   );
 });
+MotionLink.displayName = 'MotionLink';
 
 export default function Home() {
   const [headerScrolled, setHeaderScrolled] = useState(false);

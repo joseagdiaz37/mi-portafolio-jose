@@ -23,6 +23,7 @@ const MotionLink = forwardRef(({ href, children, ...props }, ref) => {
     </motion.a>
   );
 });
+MotionLink.displayName = 'MotionLink';
 
 // Ahora, tu componente Header
 export default function Header() {
