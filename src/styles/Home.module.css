@@ -1,168 +1,300 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
-
-.main {
+/* Estilos básicos para el contenedor principal */
+.container {
+  min-height: 100vh;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-}
-
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
+  justify-content: flex-start;
   align-items: center;
+  background-color: #fff; /* Fondo blanco inicial */
+  color: #333; /* Texto oscuro inicial */
+  overflow-x: hidden;
+  /* Ajusta la transición para background-color */
+  transition: background-color 0.4s ease-in-out, color 0.5s ease; /* <-- CAMBIO AQUÍ */
+  /* ELIMINA: background-image, background-size, background-position, background-repeat de aquí */
+}
+
+/* Estilos para el contenido principal (donde irá el título y las animaciones) */
+.main {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; /* <-- CAMBIO CLAVE AQUÍ: Ahora los hijos se alinearán a la izquierda */
+  width: 100%; /* Ocupa todo el ancho disponible del padre */
+  max-width: 1300px; /* <-- AÑADIDO: Limita el ancho del main para que pueda centrarse en la página */
+  margin: 0 auto; /* <-- AÑADIDO: Centra el bloque .main en la página */
+  background-color: transparent; /* Asegúrate que sea transparente para ver el fondo del .container */
+  color: inherit;
+}
+
+/* Estilos para el título principal */
+.title {
+  margin: 20rem 0 0;
+  line-height: 1.15;
+  font-size: 5rem;
+  text-align: left;
+  color: #000; /* Negro para contrastar con el fondo blanco */
+  max-width: 1300px;
+  padding: 0 1rem;
+  text-transform: uppercase;
+  font-family: 'Special Gothic Expanded One', sans-serif; /* APLICA LA FUENTE AQUÍ */
+  font-weight: 600; /* Esta fuente solo tiene el peso Regular (400) */
+}
+
+/* Estilos para la descripción/subtítulo */
+.description {
+  line-height: 1.5;
+  font-size: 1.8rem;
+  text-align: left;
+  color: #666; /* Un gris oscuro para el subtítulo */
+  max-width: 1300px;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+
+/* Estilos para el contenedor de secciones (FUERA DEL MAIN) */
+.sectionContainer {
+  width: 100%;
+  max-width: 1200px; /* Ancho máximo para el contenido de la sección */
+  margin: 6rem auto; /* <-- AÑADIDO: Centra este contenedor y le da margen superior/inferior */
+  display: flex;
+  flex-direction: column;
+  gap: 5rem; /* Espacio entre las secciones */
+  padding: 0 1.5rem; /* Padding horizontal */
+}
+
+/* Estilos para cada sección */
+.section {
+  background-color: #1a1a1a; /* Mantener oscuro */
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff; /* Texto blanco */
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
-}
-
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
   align-items: center;
-  gap: 8px;
 }
 
-.footer img {
-  flex-shrink: 0;
+/* Estilos para los títulos de sección */
+.sectionTitle {
+  font-size: 3.5rem; /* Más grande y audaz */
+  margin-bottom: 2rem;
+  color: #333; /* Blanco */
+  text-transform: uppercase;
+  font-family: 'Special Gothic Expanded One', sans-serif; /* APLICA LA FUENTE AQUÍ */
+  font-weight: 400; /* Esta fuente solo tiene el peso Regular (400) */
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
+/* Estilos para el texto de la sección */
+.sectionText {
+  font-size: 1.3rem; /* Más grande */
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #e0e0e0;
+}
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
+/* Estilos para la lista de habilidades */
+.skillsList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajustar minwidth */
+  gap: 1.5rem; /* Más espacio */
+  width: 100%;
+  text-align: center; /* Centrar habilidades */
+  font-size: 1.2rem;
+}
 
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+.skillsList li {
+  background-color: #2a2a2a; /* Fondo más oscuro para habilidades */
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #444; /* Borde más oscuro */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold; /* Habilidades en negrita */
+}
+
+.skillsList li:hover {
+    background-color: #444;
+    transform: translateY(-3px); /* Efecto sutil al hover */
+}
+
+/* Estilos para la sección de proyectos */
+.projectsSection {
+  width: 100%; /* Ocupa el 100% del contenedor padre (el .container) */
+  max-width: 1300px; /* <-- AÑADIDO: Limita el ancho de esta sección */
+  margin: 5rem auto; /* <-- AJUSTADO: Centra esta sección y le da margen */
+  padding: 0 1.5rem; /* Asegura padding horizontal */
+  text-align: center; /* Centra el título de la sección */
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* <-- CAMBIO CLAVE: 3 columnas */
+  gap: 1.5rem; /* Ajusta el espacio entre las tarjetas */
+  margin-top: 3rem;
+  justify-content: center; /* Centra los elementos de la cuadrícula si no llenan todo el espacio */
+  align-items: stretch;
+}
+
+.projectCard {
+  background-color: #1a1a1a; /* Fondo oscuro inicial (casi negro) */
+  padding: 0; /* <-- CAMBIO: Quitamos padding para que la imagen ocupe todo el espacio */
+  border-radius: 0; /* <-- CAMBIO: Sin esquinas redondeadas */
+  box-shadow: none; /* <-- CAMBIO: Quitamos la sombra por defecto, el diseño original no la tiene */
+  text-align: center; /* Centramos el contenido (el logo) */
+  color: #fff;
+
+  /* <-- AÑADIDO: Para que la tarjeta sea cuadrada (usando un truco de padding) */
+  position: relative; /* Necesario para que el padding-bottom funcione como aspecto */
+  width: 100%;
+  padding-bottom: 100%; /* Crea una caja cuadrada (100% del ancho para la altura) */
+  overflow: hidden; /* Asegura que el contenido no se desborde */
+
+  display: flex; /* Para centrar el logo */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: background-color 0.4s ease; /* Transición suave para el cambio de fondo de la tarjeta */
+  /* ELIMINA: transform y box-shadow del hover si ya no los quieres */
+  /* Dejaremos el transition para el hover, pero el efecto lo definiremos más adelante */
+}
+
+/* Estilos para el logo dentro de la tarjeta de proyecto */
+.projectLogo {
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 3; /* <-- Asegúrate que este sea 3 */
+}
+
+/* Estilos para el pie de página */
+.footer {
+  width: 100%;
+  height: 80px; /* Más alto */
+  border-top: 1px solid #333; /* Borde oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000; /* Fondo negro */
+  color: #888; /* Texto gris claro */
+  font-size: 1rem;
+  margin-top: 6rem; /* Espacio antes del footer */
+}
+
+/* Media queries para ajustes responsivos */
+@media (max-width: 768px) {
+  .title {
+    font-size: 3.5rem;
+    margin-top: 8rem;
+  }
+  .description {
+    font-size: 1.4rem;
+  }
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+  .sectionText {
+    font-size: 1.1rem;
+  }
+  .skillsList {
+    grid-template-columns: 1fr;
+  }
+  .section, .projectCard {
+    padding: 2rem;
   }
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
+@media (max-width: 480px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    .description {
+        font-size: 1.1rem;
+    }
+    .sectionTitle {
+        font-size: 2rem;
+    }
+}
 
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+/* AJUSTES RESPONSIVOS PARA projectsGrid */
+@media (max-width: 1200px) { /* Por debajo de 1200px, 2 columnas */
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media (max-width: 768px) { /* Por debajo de 768px, 1 columna */
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem; /* Puedes ajustar el gap para móviles */
   }
+}
+
+/* NUEVO: Clase para cuando el fondo de la página se vuelve oscuro al scroll */
+.containerDarkBackground {
+  background-color: #000; /* Fondo negro */
+  color: #fff; /* Asegura que el texto que hereda también cambie */
+}
+
+/* AÑADE ESTO: Para que el título y la descripción se vuelvan blancos cuando el contenedor sea oscuro */
+.containerDarkBackground .title,
+.containerDarkBackground .description {
+  color: #fff;
+}
+
+.containerDarkBackground .sectionTitle {
+  color: #fff;
+}
+
+/* Estilos para el elemento de fondo de la tarjeta al hover */
+.projectCardBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; /* <-- Asegúrate que este sea 1 */
+
+    filter: brightness(0.8) grayscale(0.2);
+    transition: filter 0.4s ease-in-out;
+}
+/* Opcional: ajustar el filtro al pasar el ratón (más claro o más saturado) */
+.projectCard:hover .projectCardBackground {
+  filter: brightness(1) grayscale(0); /* Al hover, sin filtro (o el que desees) */
+}
+
+/* Si estás usando un projectNameOverlay, también asegúrate de que tenga z-index */
+.projectNameOverlay {
+    /* ... tus estilos existentes ... */
+    z-index: 3; /* Por encima del logo si existe */
+}
+
+/* Estilos para la nueva capa de color OVERLAY */
+.projectCardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* <-- CAMBIO CLAVE AQUÍ: Ahora está entre el fondo (1) y el logo (3) */
+  pointer-events: none;
+  /* La opacidad y el color serán controlados por Framer Motion/inline style */
 }

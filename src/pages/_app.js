@@ -1,5 +1,15 @@
-import "@/styles/globals.css";
+import '../styles/globals.css';
+import Header from '../components/Header';
+import { ProjectHoverProvider } from '../context/ProjectHoverContext'; // <-- NUEVO IMPORT
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+  return (
+    // Envuelve todo con el proveedor del contexto
+    <ProjectHoverProvider> {/* <-- AÑADIDO */}
+      <Header />
+      <Component {...pageProps} />
+    </ProjectHoverProvider> 
+  );
 }
+
+export default MyApp;

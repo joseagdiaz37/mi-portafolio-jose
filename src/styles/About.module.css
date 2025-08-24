@@ -1,0 +1,25 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Un fondo diferente para distinguir */
+  color: #333;
+  padding: 2rem;
+}
+
+.main {
+  text-align: center;
+  max-width: 800px;
+}
+
+.title {
+  font-size: 3rem;
+  color: #363636;
+}
+
+.description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
