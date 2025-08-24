@@ -1,25 +1,171 @@
-.container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* Contenedor de la página con la foto fija a la izquierda */
+.page {
+  position: relative;
+}
+
+/* FOTO FIJA IZQUIERDA (parallax) */
+.page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(38vw, 520px);   /* ancho de la franja izquierda */
+  height: 100vh;
+  background-image: url("/images/me.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  opacity: 0.9;              /* visible en secciones claras */
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Sección genérica */
+.section {
+  position: relative;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 4vw, 4rem);
+  margin-left: min(38vw, 520px); /* deja espacio para la foto fija */
+  transition: color .3s ease, background-color .3s ease;
+}
+
+/* Variante clara (blanco, texto negro) */
+.light {
+  background: #fff;
+  color: #111;
+}
+
+/* Variante oscura con opacidad: la foto se sigue viendo detrás */
+.dark {
+  background: rgba(0,0,0,0.72);
+  color: #f6f6f6;
+}
+
+/* Sección negra con parallax “más dramático” para el bloque inferior */
+.darkParallax {
+  background: rgba(0,0,0,0.86);
+  color: #f6f6f6;
+  backdrop-filter: saturate(110%);
+}
+
+/* Hero */
+.hero .title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  margin: 0 0 1rem;
+  font-weight: 800;
+}
+.lead {
+  max-width: 60ch;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  opacity: .85;
+}
+
+/* Tipografías/separadores */
+.h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  margin: 0 0 1rem;
+  letter-spacing: -0.3px;
+}
+.h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  margin: 0 0 .75rem;
+}
+.h4 {
+  font-size: 1rem;
+  margin: 0 0 .5rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+/* Wrappers */
+.wrap { max-width: 1100px; }
+.wrap, .wrapGrid, .wrapCenter {
+  margin: 0 auto;
+}
+.wrapGrid {
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.wrapCenter {
+  max-width: 1100px;
+  display: grid;
+  place-items: center;
+  min-height: 40vh;
+}
+
+/* Listas */
+.list { margin: 0; padding-left: 1.1rem; }
+.list li { margin: .25rem 0; }
+
+/* Expertise */
+.expertiseGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+}
+.bullets { margin: 0; padding-left: 1rem; }
+.bullets li { margin: .35rem 0; }
+
+/* Afiliaciones / Clientes / Premios */
+.logosRow {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 2rem;
   align-items: center;
-  background-color: #f0f0f0; /* Un fondo diferente para distinguir */
-  color: #333;
-  padding: 2rem;
+  opacity: .8;
+}
+.clientsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: .75rem;
+}
+.clientBox {
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.04);
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+  font-size: .9rem;
+  opacity: .85;
+}
+.tableWrap { overflow-x: auto; }
+.awardsTable {
+  width: 100%;
+  border-collapse: collapse;
+  opacity: .95;
+}
+.awardsTable th, .awardsTable td {
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  padding: .75rem .5rem;
+  text-align: left;
 }
 
-.main {
-  text-align: center;
-  max-width: 800px;
+/* CTA */
+.cta {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: .02em;
 }
 
-.title {
-  font-size: 3rem;
-  color: #363636;
+/* Responsivo */
+@media (max-width: 1024px) {
+  .page::before { width: 34vw; }
 }
-
-.description {
-  font-size: 1.2rem;
-  line-height: 1.6;
+@media (max-width: 900px) {
+  .page::before {
+    position: absolute;      /* deja de ser fixed en móvil para simplificar */
+    width: 100%;
+    height: 40vh;
+    opacity: .35;
+    filter: grayscale(10%);
+  }
+  .section { margin-left: 0; }
+  .hero { padding-top: 50vh; } /* empuja contenido debajo de la imagen */
+  .wrapGrid { grid-template-columns: 1fr; }
+  .expertiseGrid { grid-template-columns: 1fr; }
+  .clientsGrid { grid-template-columns: repeat(3,1fr); }
+  .logosRow { grid-auto-flow: row; grid-template-columns: repeat(2,1fr); }
 }

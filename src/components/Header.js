@@ -24,6 +24,8 @@ const MotionLink = forwardRef(({ href, children, ...props }, ref) => {
   );
 });
 
+MotionLink.displayName = 'MotionLink';
+
 // Ahora, tu componente Header
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
